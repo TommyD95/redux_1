@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import "./styles.css";
+import MovieList from "./components/MovieList";
+import SongList from "./components/SongList";
+import { useDispatch } from "react-redux";
+import { reset } from "./store/actions";
+
+ export default function App() {
+  const dispatch=useDispatch();
+
+  const handleResetClick = () => {
+    dispatch(reset())
+};
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container is-fluid">
+      <button onClick={() => handleResetClick()} className="button is-danger">
+        Reset Both Playlists
+      </button>
+      <hr />
+      <MovieList />
+      <hr />
+      <SongList />
     </div>
   );
 }
 
-export default App;
+
